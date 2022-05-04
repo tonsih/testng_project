@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods" thread-count="3">
+    <parameter name="i" value="5" />
+    <parameter name="j" value="5" />
+
+    <test verbose="2" preserve-order="true"
+          name="/home/toni/programming/java/idea/testng">
+
+        <groups>
+
+            <run>
+                <include name="addition" />
+                <include name="subtraction" />
+                <include name="multiplication" />
+            </run>
+
+        </groups>
+
+        <classes>
+            <class name="CalculatorTest" />
+        </classes>
+    </test>
+</suite>
