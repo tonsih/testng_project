@@ -23,9 +23,7 @@ public class CalculatorTest {
     @Parameters({"i", "j"})
     void addTest(int i, int j) {
 
-        CalculatorMain calculatorMain = new CalculatorMain();
-
-        Assert.assertEquals(i+j, calculatorMain.add(i,j));
+        Assert.assertEquals(i+j, CalculatorMain.add(i,j));
     }
 
 
@@ -33,9 +31,7 @@ public class CalculatorTest {
     @Parameters({"i", "j"})
     void subtractTest(int i, int j) {
 
-        CalculatorMain calculatorMain = new CalculatorMain();
-
-        Assert.assertEquals(i-j, calculatorMain.subtract(i,j));
+        Assert.assertEquals(i-j, CalculatorMain.subtract(i,j));
     }
 
 
@@ -43,14 +39,26 @@ public class CalculatorTest {
 //    @Parameters({"i", "j"})
     void multiplyTest(int i, int j) {
 
-        CalculatorMain calculatorMain = new CalculatorMain();
-
-        Assert.assertEquals(i*j, calculatorMain.multiply(i,j));
+        Assert.assertEquals(i*j, CalculatorMain.multiply(i,j));
     }
 
     @DataProvider(name="CalculatorDataProvider")
     public Object[][] getInts() {
         return new Object[][] {{5,3},{3,3},{2,5}};
+    }
+
+
+    @Test(priority = 4, groups={"division"})
+    @Parameters({"j"})
+    void testNotZero (int j) {
+        Assert.assertTrue(CalculatorMain.notZero(j));
+    }
+
+
+    @Test(priority = 4, groups={"division"}, dependsOnMethods={"testNotZero"})
+    @Parameters({"i", "j"})
+    public void testDivision(int i, int j) {
+        Assert.assertEquals(i/j, CalculatorMain.divide(i, j));
     }
 
 
